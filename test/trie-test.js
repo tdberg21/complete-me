@@ -74,13 +74,14 @@ describe('TRIE', () => {
       const completion = new Trie();
 
       completion.populate(dictionary);
-      completion.suggest('')
-      assert.equal(completion.count, 235886);
+      completion.suggest('pizz');
+
+      assert.deepEqual(completion.suggestionArray, [ 'pizza', 'pizzeria', 'pizzicato', 'pizzle' ]);
     });
   });
 
   describe('CONTAINS', () => {
-    it.only('should return true if the word exists in the trie', () => {
+    it('should return true if the word exists in the trie', () => {
       let trie = new Trie();
 
       trie.insert('apple');
@@ -88,7 +89,7 @@ describe('TRIE', () => {
       assert.equal(trie.contains('apple'), true);
     });
 
-    it.only('should return false if the word does not exist in the trie', () => {
+    it('should return false if the word does not exist in the trie', () => {
       let trie = new Trie();
 
       trie.insert('apple');
