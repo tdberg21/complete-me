@@ -28,10 +28,15 @@ describe('TRIE', () => {
 
   describe('INSERT', () => {
     
-    it('should add nodes to the tree', () => {
-      trie.insert('dogs');
-      expect(Object.keys(trie.root.children)[0]).to.equal('d');
-    })
+    it('should add a node to the tree', () => {
+      trie.insert('d');
+      assert.equal(Object.keys(trie.root.children)[0], 'd');
+    });
+    
+    it('should add multiple nodes to the tree', () => {
+
+    }
+    )
     
   });
 
@@ -47,9 +52,10 @@ describe('TRIE', () => {
       trie.suggest('do');
       console.log(JSON.stringify(trie, null, 4));
 
-      expect(trie.suggestionArray).to.deep.equal(['dog', 'double', 'door']);
+      assert.deepEqual(trie.suggestionArray, ['dog', 'double', 'door']);
     });
-    
+
+
   });
 
 });
