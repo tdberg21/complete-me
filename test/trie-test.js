@@ -1,6 +1,5 @@
 import { assert } from 'chai';
 import Trie from '../lib/Trie';
-import Node from '../lib/Node';
 import fs from 'fs';
 
 describe('TRIE', () => {
@@ -57,7 +56,7 @@ describe('TRIE', () => {
     });
   });
 
-  describe('Dictionary', () => {
+  describe('POPULATE', () => {
 
     it('should insert the dictionary', () => {
       const text = "/usr/share/dict/words";
