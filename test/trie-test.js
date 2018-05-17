@@ -1,7 +1,6 @@
 import { assert } from 'chai';
-import { expect } from 'chai';
 import Trie from '../lib/Trie';
-import Node from '../lib/Node';
+import fs from 'fs';
 
 describe('TRIE', () => {
   let trie;
@@ -30,11 +29,15 @@ describe('TRIE', () => {
     
     it('should add a node to the tree', () => {
       trie.insert('d');
-      assert.equal(Object.keys(trie.root.children)[0], 'd');
+      const actual = Object.keys(trie.root.children)[0];
+      const expected = 'd';
+
+      assert.equal(actual, expected);
     });
     
     it('should add multiple nodes to the tree', () => {
-
+      trie.insert('dog');
+      assert.equal(Object.keys(trie.root.children.d.children), 'o');
     }
     )
     
@@ -48,14 +51,21 @@ describe('TRIE', () => {
       trie.insert('dog');
       trie.insert('double');
       trie.insert('door');
-
       trie.suggest('do');
-      console.log(JSON.stringify(trie, null, 4));
-
       assert.deepEqual(trie.suggestionArray, ['dog', 'double', 'door']);
     });
+  });
 
+  describe('POPULATE', () => {
 
+    it('should insert the dictionary', () => {
+      const text = "/usr/share/dict/words";
+      const dictionary = fs.readFileSync(text).toString().trim().split('\n');
+      const completion = new Trie();
+
+      completion.populate(dictionary);
+      assert.equal(completion.count, 235886);
+    });
   });
 
 });
