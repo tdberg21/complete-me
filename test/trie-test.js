@@ -66,6 +66,16 @@ describe('TRIE', () => {
       completion.populate(dictionary);
       assert.equal(completion.count, 235886);
     });
+
+    it('should suggest words from the dictionary', () => {
+      const text = "/usr/share/dict/words";
+      const dictionary = fs.readFileSync(text).toString().trim().split('\n');
+      const completion = new Trie();
+
+      completion.populate(dictionary);
+      completion.suggest()
+      assert.equal(completion.count, 235886);
+    });
   });
 
 });
