@@ -25,6 +25,10 @@ describe('TRIE', () => {
     assert.deepEqual(actual, expected);
   });
 
+  it('should have a count property that defaults to 0', () => {
+    assert.equal(trie.count, 0);
+  });
+
 
   describe('INSERT', () => {
     
@@ -47,8 +51,6 @@ describe('TRIE', () => {
   describe('SUGGEST', () => {
 
     it('should suggest words based on the prefix', () => {
-      let trie = new Trie();
-
       trie.insert('dog');
       trie.insert('double');
       trie.insert('door');
